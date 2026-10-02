@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: formation
+    database: formation-sql-316408
+    schema: formation
+    tables:
+      - name: Raw_Data_Provider_A
+      - name: Raw_Data_Provider_B
