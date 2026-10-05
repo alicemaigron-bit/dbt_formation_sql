@@ -1,21 +1,8 @@
 Select
     forecast_id,
 
-    case
-        when upper(trim(category)) in ('FOOD', 'FOODS') then 'FOOD'
-        when upper(trim(category)) in ('TOY', 'TOYS') then 'TOYS'
-        when upper(trim(category)) in ('APPAREL', 'FASHION') then 'FASHION'
-        when upper(trim(category)) in ('COSMETICS', 'BEAUTY') then 'BEAUTY'
-        when upper(trim(category)) in ('DRINK', 'DRINKS', 'BEVERAGE', 'BEVERAGES') then 'BEVERAGES'
-        when upper(trim(category)) in ('ELECTRONIC', 'ELECTRONICS') then 'ELECTRONICS'
-        when upper(trim(category)) in ('HOME CARE', 'HOMECARE') then 'HOME CARE'
-        when upper(trim(category)) in ('SPORT', 'SPORTS') then 'SPORTS'
-        when upper(trim(category)) in ('PETS', 'PET CARE') then 'PET CARE'
-        when upper(trim(category)) in ('PERSONALCARE', 'PERSONAL CARE') then 'PERSONAL CARE'
-        when upper(trim(category)) in ('OFFICE SUPPLY', 'OFFICE SUPPLIES') then 'OFFICE SUPPLIES'
-        when upper(trim(category)) in ('HOME AND KITCHEN', 'HOME & KITCHEN') then 'HOME & KITCHEN'
-        else upper(trim(category))
-    end as category,
+    -- Mapping via le seed retail_category_mapping
+    upper(coalesce(m.accepted_value, trim(b.category))) as category,
 
     upper(trim(country)) as country,
 
@@ -47,6 +34,8 @@ Select
         else upper(trim(currency))
     end as currency
 From
-    {{ ref('stg_raw_data_provider_b') }}
+    {{ ref('stg_raw_data_provider_b') }} as b
+    Left Join {{ ref('retail_category_mapping') }} as m
+        on upper(trim(b.category)) = upper(trim(m.to_be_mapped))
 Where
     forecast_sales_eur > 0
