@@ -1,13 +1,27 @@
 ﻿to_be_mapped,accepted_value
 Apparel,Apparel
+Fashion,Apparel
 Beauty,Beauty
+Cosmetics,Beauty
 Beverages,Beverages
+Beverage,Beverages
+Drinks,Beverages
+Drink,Beverages
 Electronics,Electronics
+Electronic,Electronics
 Food,Food
+Foods,Food
 Home & Kitchen,Home & Kitchen
+Home and Kitchen,Home & Kitchen
 Home Care,Home Care
+Homecare,Home Care
 Office Supplies,Office Supplies
+Office Supply,Office Supplies
 Personal Care,Personal Care
+Personalcare,Personal Care
 Pet Care,Pet Care
+Pets,Pet Care
 Sports,Sports
+Sport,Sports
 Toys,Toys
+Toy,Toys
